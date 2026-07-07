@@ -1,0 +1,8 @@
+[web]
+web1 ansible_host=192.168.56.21
+web2 ansible_host=192.168.56.22
+
+[all:vars]
+ansible_user=vagrant
+ansible_ssh_private_key_file=/home/vagrant/.ssh/id_ed25519
+
