@@ -1,0 +1,36 @@
+---
+- name: Install and configure Nginx
+  hosts: web
+  become: yes
+
+  tasks:
+
+    - name: Update apt cache
+      apt:
+        update_cache: yes
+
+    - name: Install nginx
+      apt:
+        name: nginx
+        state: present
+
+    - name: Enable nginx
+      service:
+        name: nginx
+        enabled: yes
+        state: started
+
+    - name: Create custom index page
+      copy:
+        dest: /var/www/html/index.html
+        content: |
+          <html>
+            <head>
+              <title>Ansible Lab</title>
+            </head>
+            <body>
+              <h1>Hello from {{ inventory_hostname }}</h1>
+              <p>Configured by Ansible 🚀</p>
+            </body>
+          </html>
+
